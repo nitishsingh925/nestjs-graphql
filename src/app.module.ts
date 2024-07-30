@@ -5,6 +5,8 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver } from '@nestjs/apollo';
 import { join } from 'path';
 import { AppResolver } from './app.resolver';
+import { User } from './user/entities/user.entiy';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -29,11 +31,12 @@ import { AppResolver } from './app.resolver';
         username: configService.getOrThrow('DB_USERNAME'),
         password: configService.getOrThrow('DB_PASSWORD'),
         database: configService.getOrThrow('DB_DATABASE_NAME'),
-        entities: [],
+        entities: [User],
         synchronize: configService.getOrThrow('DB_SYNCHRONIZE'),
       }),
       inject: [ConfigService],
     }),
+    UserModule,
   ],
   providers: [AppResolver],
 })
