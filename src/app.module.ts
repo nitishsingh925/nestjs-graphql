@@ -7,6 +7,7 @@ import { join } from 'path';
 import { AppResolver } from './app.resolver';
 import { User } from './user/entities/user.entiy';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { UserModule } from './user/user.module';
       inject: [ConfigService],
     }),
     UserModule,
+    AuthModule,
   ],
   providers: [AppResolver],
 })
